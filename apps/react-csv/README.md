@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# CSVテンプレートダウンロード機能
 
-## Getting Started
+このプロジェクトでは、`react-csv`パッケージを使用したCSVテンプレートのダウンロード機能実装における問題と解決策を示しています。
 
-First, run the development server:
+## 解決した問題
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+WebアプリケーションからCSVテンプレートをダウンロードする機能を実装する際に発生した以下の問題に対処しています：
+
+1. 日本語を含むCSVファイルのエンコード問題
+2. ブラウザによって動作が異なる問題
+3. 空のテンプレートをダウンロードする際のフォーマットの扱い
+
+## 実装方法
+
+このデモでは、`react-csv`パッケージを使用して空のCSVテンプレートをダウンロードできる機能を実装しています。
+
+```tsx
+import { CSVLink } from "react-csv";
+
+// ヘッダーとデータの定義
+const headers = [
+  { label: "名前", key: "name" },
+  { label: "年齢", key: "age" },
+  // ...
+];
+
+const emptyTemplateData = [
+  { name: "", age: "", /* ... */ }
+];
+
+// CSVLinkコンポーネントの使用
+<CSVLink
+  data={emptyTemplateData}
+  headers={headers}
+  filename="template.csv"
+  className={styles.primary}
+  target="_blank"
+>
+  テンプレートをダウンロード
+</CSVLink>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 解決策のポイント
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `CSVLink`コンポーネントを使用することで、ブラウザ間の互換性問題を解決
+- 日本語を含むCSVを正しく扱うためのエンコード設定
+- 空のテンプレートも正しいフォーマットでダウンロードできるように実装
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
+## 動作確認方法
 
-## Learn More
+```bash
+# 開発サーバーの起動
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+http://localhost:3000 にアクセスし、「テンプレートをダウンロード」ボタンをクリックしてCSVファイルをダウンロードできます。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 参考リソース
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [react-csvパッケージ](https://github.com/react-csv/react-csv)
+- [CSVファイルの文字コードについて](https://www.iana.org/assignments/character-sets/character-sets.xhtml)

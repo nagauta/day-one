@@ -1,5 +1,71 @@
 # Day One
 
+[English](#english) | [日本語](#japanese)
+
+<a id="english"></a>
+# Day One
+
+This repository (day-one) is a monorepo designed to record technical problems encountered in daily development and their solutions.
+
+## Purpose
+
+The purpose is to save problems and stumbling points encountered during development with minimally reproducible code and share them along with solutions. Each problem is managed as an independent application or package that can be easily referenced when needed.
+
+## Structure
+
+This monorepo is structured using Turborepo as follows:
+
+### Applications and Packages
+
+- `apps/`: Minimal applications to reproduce problems
+- `packages/`: Common components and utilities
+
+Each application/package is implemented in TypeScript.
+
+### Usage
+
+To check the reproduction of a problem and its solution:
+
+```
+# Clone the repository
+git clone https://github.com/nagauta/day-one.git
+cd day-one
+
+# Install dependencies
+pnpm install
+
+# Run all apps in development mode
+pnpm dev
+
+# To run only a specific app
+pnpm dev --filter=app-name
+```
+
+### How to Add a Project
+
+When adding a new problem and solution:
+
+1. Create a new application in the `apps/` directory
+2. Reproduce the problem with minimal code
+3. Implement the solution and add explanations in comments
+4. Document the details of the problem and an overview of the solution in the application's README
+
+## Tech Stack
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [Turborepo](https://turbo.build/repo)
+- Frameworks like [Next.js](https://nextjs.org/) (depending on the problem)
+- [pnpm](https://pnpm.io/) package manager
+
+## Contributions
+
+Additions of problems and solutions are very welcome. When sending a PR, please ensure that the problem reproduction is kept minimal.
+
+---
+
+<a id="japanese"></a>
+# Day One
+
 このリポジトリ（day-one）は、日々の開発で遭遇する技術的な問題とその解決策を記録するためのmonorepoです。
 
 ## 目的

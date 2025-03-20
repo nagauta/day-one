@@ -1,84 +1,57 @@
-# Turborepo starter
+# Day One
 
-This Turborepo starter is maintained by the Turborepo core team.
+このリポジトリ（day-one）は、日々の開発で遭遇する技術的な問題とその解決策を記録するためのmonorepoです。
 
-## Using this example
+## 目的
 
-Run the following command:
+開発中に「ハマった問題」や「躓いたポイント」を最小限の再現可能なコードで保存し、解決策とともに共有することを目的としています。各問題は独立したアプリケーションやパッケージとして管理され、必要な時に簡単に参照できます。
 
-```sh
-npx create-turbo@latest
-```
+## 構成
 
-## What's inside?
+このmonorepoはTurborepoを使用して以下の構成になっています：
 
-This Turborepo includes the following packages/apps:
+### アプリケーションとパッケージ
 
-### Apps and Packages
+- `apps/`: 問題を再現するための最小限のアプリケーション
+- `packages/`: 共通のコンポーネントやユーティリティ
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+各アプリケーション/パッケージはTypeScriptで実装されています。
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### 使用方法
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+問題の再現と解決策を確認するには：
 
 ```
-cd my-turborepo
-pnpm build
-```
+# リポジトリをクローン
+git clone https://github.com/nagauta/day-one.git
+cd day-one
 
-### Develop
+# 依存関係をインストール
+pnpm install
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+# すべてのアプリを開発モードで実行
 pnpm dev
+
+# 特定のアプリだけ実行する場合
+pnpm dev --filter=app名
 ```
 
-### Remote Caching
+### プロジェクトの追加方法
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+新しい問題と解決策を追加する場合：
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+1. `apps/`ディレクトリに新しいアプリケーションを作成
+2. 問題を最小限のコードで再現
+3. 解決策を実装し、コメントで説明を追加
+4. アプリケーションのREADMEに問題の詳細と解決策の概要を記載
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+## 技術スタック
 
-```
-cd my-turborepo
-npx turbo login
-```
+- [TypeScript](https://www.typescriptlang.org/)
+- [Turborepo](https://turbo.build/repo)
+- [Next.js](https://nextjs.org/)などのフレームワーク（問題に応じて）
+- [pnpm](https://pnpm.io/) パッケージマネージャー
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+## 貢献について
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+問題と解決策の追加は大歓迎です。PRを送る際は、問題の再現が最小限になるように心がけてください。

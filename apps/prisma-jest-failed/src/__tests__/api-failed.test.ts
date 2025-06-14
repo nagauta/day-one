@@ -4,6 +4,9 @@ import { app } from '../index';
 describe('API Endpoints', () => {
   describe('GET /post/:id', () => {
     jest.useFakeTimers();
+    // 下記で報告されている回避策を使うことで回避できる
+    // https://github.com/prisma/prisma/issues/7424#issuecomment-1383207020
+    // jest.useFakeTimers({ doNotFake: ['nextTick'] });
     
     it('should return a specific post', async () => {
       // まず新しい投稿を作成

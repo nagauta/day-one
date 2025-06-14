@@ -1,28 +1,33 @@
 import { Prisma, PrismaClient } from '@prisma/client'
 import express from 'express'
 
-const prisma = new PrismaClient()
+export const prisma = new PrismaClient()
 const app = express()
 
 app.use(express.json())
 
 app.post(`/signup`, async (req, res) => {
-  const { name, email, posts } = req.body
+  try {
+    const { name, email, posts } = req.body
 
-  const postData = posts?.map((post: Prisma.PostCreateInput) => {
-    return { title: post?.title, content: post?.content }
-  })
+    const postData = posts?.map((post: Prisma.PostCreateInput) => {
+      return { title: post?.title, content: post?.content }
+    })
 
-  const result = await prisma.user.create({
-    data: {
-      name,
-      email,
-      posts: {
-        create: postData,
+    const result = await prisma.user.create({
+      data: {
+        name,
+        email,
+        posts: {
+          create: postData,
+        },
       },
-    },
-  })
-  res.json(result)
+    })
+    res.json(result)
+  } catch (error) {
+    console.error('Error in /signup:', error)
+    res.status(500).json({ error: 'Failed to create user' })
+  }
 })
 
 app.post(`/post`, async (req, res) => {
@@ -145,8 +150,12 @@ app.get('/feed', async (req, res) => {
   res.json(posts)
 })
 
-const server = app.listen(3000, () =>
-  console.log(`
+export { app };
+
+if (require.main === module) {
+  app.listen(3000, () =>
+    console.log(`
 🚀 Server ready at: http://localhost:3000
 ⭐️ See sample requests: https://github.com/prisma/prisma-examples/blob/latest/orm/express/README.md#using-the-rest-api`),
-)
+  );
+}

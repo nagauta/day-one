@@ -3,6 +3,8 @@ import { app } from '../index';
 
 describe('API Endpoints', () => {
   describe('GET /post/:id', () => {
+    jest.useFakeTimers();
+    
     it('should return a specific post', async () => {
       // まず新しい投稿を作成
       const postData = {

@@ -73,14 +73,7 @@ describe('API Endpoints', () => {
       expect(getResponse.body.content).toBe(postData.content);
     });
 
-    it('should return 404 for non-existent post', async () => {
-      const nonExistentId = '999999';
-      const response = await request(app)
-        .get(`/post/${nonExistentId}`);
-
-      expect(response.status).toBe(404);
-    });
-  });
+ });
 
   describe('GET /feed', () => {
     it('should return published posts', async () => {

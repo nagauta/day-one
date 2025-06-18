@@ -1,5 +1,5 @@
 {
-  "name": "acl-examples",
+  "name": "@dayone/acl-examples",
   "license": "MIT",
   "dependencies": {
     "hono": "^4.2.4"
